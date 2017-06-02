@@ -1,6 +1,4 @@
 <?php
-	//http://localhost/pw2171server/abc/php/datos.php?opcion=valida&usuario=pw&clave=null
-
 	require("utilerias.php");
 	function valida(){
 		$respuesta=false;
@@ -19,7 +17,48 @@
 		$respuesta=false;
 		$conexion=conecta();
 		$u=GetSQLValueString($_POST["usuario"],"text");
-		$consulta=sprintf("select * from usuarios where usuario=%s", $usuario);
+		$consulta=sprintf("select * from usuarios where usuario=%s limit 1", $u);
+		$resultado=mysql_query($consulta);
+		$nombre="";
+		$clave="";
+		$depto=0;
+		$vigencia=0;
+		if(mysql_num_rows($resultado)>0){
+			$respuesta=true;
+			if($registro=mysql_fetch_array($resultado)){
+				$nombre=$registro["nombre"];
+				$clave=$registro["clave"];
+				$depto=$registro["departamento"];
+				$vigencia=$registro["vigencia"];
+			}
+		}
+		$salidaJSON = array('respuesta' 	=> $respuesta,
+		 					'nombre' 		=> $nombre,
+		 					'clave' 		=> $clave,
+		 					'departamento' 	=> $departamento,
+		 					'vigencia' 		=> $vigencia);
+		print json_encode($salidaJSON);
+	}
+	function alta(){
+		$respuesta=false;
+		$conexion=conecta();
+		$u=GetSQLValueString($_POST["usuario"],"text");
+		$n=GetSQLValueString($_POST["nombre"],"text");
+		$c=GetSQLValueString(md5($_POST["clave"]),"text");
+		$d=GetSQLValueString($_POST["departamento"],"int");
+		$v=GetSQLValueString($_POST["vigencia"],"int");
+		//Buscar si existe
+		$busca=sprintf("select usuario from usuarios where usuario=%s",$u);
+		$resultadoBusca=mysql_query($busca);
+		if(mysql_num_rows($resultadoBusca)==0){//si no existe
+			$inserta=sprintf("insert into usuarios values(default,%s,%s,%s,%d,%d)",$u,$n,$c,$d,$v);
+			mysql_query($inserta);
+			if(mysql_affected_rows()>0){
+				$respuesta=true;
+			}
+		}
+		$salidaJSON = array('respuesta' => $respuesta);
+		print json_encode($salidaJSON);
 	}
 	//menú principal
 	$opcion=$_POST["opcion"];
@@ -29,6 +68,10 @@
 			break;
 		case 'datosusuario':
 			datosUsuario();
+			break;
+		case 'alta':
+			alta();
+			break;
 		default:
 			# code...
 			break;
