@@ -20,6 +20,7 @@ var iniciaApp = function(){
 			if(data.respuesta==true){
 				$("#datosUsuario").hide("slow");
 				$("nav").show("slow");
+				$("#secUsuarios").show("slow");
 			}
 		});
 		validaEntrada.fail(function(jqError,textStatus){
@@ -36,9 +37,27 @@ var iniciaApp = function(){
 			entrar();
 		}
 	}
+	var datosUsuario=function(){
+		var usaurio=$("#txtNomUsuario").val();
+		var parametros="opcion=datosusuario"+
+						"&usuario="+usuario+
+						"&id="+Math.random();
+		var du=$.ajax({
+			method:"POST",
+			url:"php/datos.php",
+			data:parametros,
+			dataType:"json"
+		});
+	}
+	var teclaNomUsuario=function(tecla){
+		if(tecla.which==13){
+			datosUsuario();
+		}
+	}
 	//sección de declaración de eventows
 	$("#btnEntrar").on("click",entrar);
 	$("#txtUsuario").on("keypress",teclaUsuario);
 	$("#txtClave").on("keypress",teclaClave)
+	$("#txtNomUsuario").on("keypress",teclaNomUsuario);
 }
 $(document).ready(iniciaApp);

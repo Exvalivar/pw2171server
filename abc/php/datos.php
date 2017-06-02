@@ -15,13 +15,20 @@
 		$salidaJSON = array('respuesta' => $respuesta);
 		print(json_encode($salidaJSON));
 	}
+	function datosUsuario(){
+		$respuesta=false;
+		$conexion=conecta();
+		$u=GetSQLValueString($_POST["usuario"],"text");
+		$consulta=sprintf("select * from usuarios where usuario=%s", $usuario);
+	}
 	//menú principal
 	$opcion=$_POST["opcion"];
 	switch ($opcion) {
 		case 'valida':
 			valida();
 			break;
-		
+		case 'datosusuario':
+			datosUsuario();
 		default:
 			# code...
 			break;
