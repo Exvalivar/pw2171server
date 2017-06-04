@@ -1,5 +1,6 @@
 var iniciaApp = function(){
-	//alert("Hola App");
+	//Variable global
+	var claveUsuario = "";
 	var entrar=function(){
 		var usuario = $("#txtUsuario").val();
 		var clave   = $("#txtClave").val();
@@ -53,6 +54,7 @@ var iniciaApp = function(){
 			if(data.respuesta==true){
 				$("#txtNomNombre").val(data.nombre);
 				$("#txtNomClave").val(data.clave);
+				claveUsuario = data.clave; //Por si se modifica en CAMBIOS
 				$("#txtNomDepto").val(data.departamento);
 				$("#txtNomVigencia").val(data.vigencia);
 			}else{
@@ -98,13 +100,100 @@ var iniciaApp = function(){
 
 		});
 	}
+	var bajas = function(){
+		var usuario=$("#txtNomUsuario").val(); 
+		var parametros="opcion=baja"+
+					   "&usuario="+usuario+
+					   "&id="+Math.random();
+		var bajaUsuario=$.ajax({
+			method:"POST",
+			url:"php/datos.php",
+			data:parametros,
+			dataType:"json"
+		});
+		bajaUsuario.done(function(data){
+			if(data.respuesta==true){
+				alert("Usuario dado de baja");				
+			}else{
+				alert("Usuario existente o no se pudo dar de baja");
+			}
+		});
+		bajaUsuario.fail(function(jqError,textStatus){
+
+		});
+	}
+	var cambios=function(){
+		var usuario=$("#txtNomUsuario").val(); 
+		var nombre=$("#txtNomNombre").val();
+		var clave=$("#txtNomClave").val();
+		var aplicarMD5="n";
+		if(clave.localeCompare(claveUsuario)>0){
+			aplicarMD5="s"; //Si cambiamos la clave debemos de aplicar MD5 en php antes de guardar
+		}
+		var depto=$("#txtNomDepto").val();
+		var vigencia=$("#txtNomVigencia").val();
+		var parametros="opcion=cambios"+
+					   "&usuario="+usuario+
+					   "&nombre="+nombre+
+					   "&clave="+clave+
+					   "&departamento="+depto+
+					   "&vigencia="+vigencia+ 	
+					   "&aplicarMD5="+aplicarMD5+
+					   "&id="+Math.random();
+		var cambiosUsuario=$.ajax({
+			method:"POST",
+			url:"php/datos.php",
+			data:parametros,
+			dataType:"json"
+		});
+		cambiosUsuario.done(function(data){
+			if(data.respuesta==true){
+				alert("Usuario actualizado");				
+			}else{
+				alert("Usuario existente o no se pudo actualizar");
+			}
+		});
+		cambiosUsuario.fail(function(jqError,textStatus){
+
+		});
+	}
+	var consultas=function(){
+		var parametros="opcion=consultas"+
+					   "&id="+Math.random();
+		var consultasUsuario=$.ajax({
+			method:"POST",
+			url:"php/datos.php",
+			data:parametros,
+			dataType:"json"
+		});
+		consultasUsuario.done(function(data){
+			if(data.respuesta==true){
+				$("main > section").hide();
+				$("#secConsultas").show("slow");
+				$("#tblConsultas").html(data.renglones);
+			}else{
+				alert("No hay datos que mostrar");
+			}
+		});
+		consultasUsuario.fail(function(jqError,textStatus){
+
+		});
+	}
+	var inicio=function(){
+		$("#secConsultas").hide();
+		$("#secUsuarios").show("slow");
+		$("#txtNomUsuario").focus();
+	}
 	//Sección de declaración de eventos
 	$("#btnEntrar").on("click",entrar);
 	$("#txtUsuario").on("keypress",teclaUsuario);
 	$("#txtClave").on("keypress",teclaClave);
 	$("#txtNomUsuario").on("keypress",teclaNomUsuario);
 	$("#btnAltas").on("click",altas);
-
+	$("#btnBajas").on("click",bajas);
+	$("#btnCambios").on("click",cambios);
+	$("#btnConsultas").on("click",consultas);
+	$("#btnInicio").on("click",inicio);
 }
 $(document).ready(iniciaApp);
 

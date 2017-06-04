@@ -60,6 +60,66 @@
 		$salidaJSON = array('respuesta' => $respuesta);
 		print json_encode($salidaJSON);
 	}
+	function baja(){
+		$respuesta=false;
+		$conexion=conecta();
+		$u=GetSQLValueString($_POST["usuario"],"text");
+		$elimina=sprintf("delete from usuarios where usuario=%s",$u);
+		mysql_query($elimina);
+		if(mysql_affected_rows()>0){
+				$respuesta=true;
+		}
+		$salidaJSON = array('respuesta' => $respuesta);
+		print json_encode($salidaJSON);
+	}
+	function cambio(){
+		$respuesta=false;
+		$conexion=conecta();
+		$u=GetSQLValueString($_POST["usuario"],"text");
+		$n=GetSQLValueString($_POST["nombre"],"text");
+		$c=GetSQLValueString(md5($_POST["clave"]),"text");
+		$d=GetSQLValueString($_POST["departamento"],"int");
+		$v=GetSQLValueString($_POST["vigencia"],"int");
+		$cambio=sprintf("update usuarios set nombre=%s, clave=%s, departamento=%d, vigencia=%d where usuario=%s",$n,$c,$d,$v,$u);
+		mysql_query($cambio);
+		if(mysql_affected_rows()>0){
+			$respuesta=true;
+		}
+		$salidaJSON = array('respuesta' => $respuesta);
+		print json_encode($salidaJSON);
+	}
+	function consulta(){
+		$respuesta=false;
+		$conexion=conecta();
+		$consulta=sprintf("select * from usuarios order by usuario");
+		$resultado=mysql_query($consulta);
+		$renglones="<tr>";
+		$renglones.="<th>Usuario</th>";
+		$renglones.="<th>Nombre</th>";
+		$renglones.="<th>Departamento</th>";
+		$renglones.="<th>Vigencia</th>";
+		$renglones.="</tr>";
+		//$resultado es un dataset
+		if(mysql_num_rows($resultado)>0){//hay registros
+			while ($registro=mysql_fetch_array($resultado)) {
+				$renglones.="<tr>";
+				$renglones.="<td>".$registro["usuario"]."</td>";
+				$renglones.="<td>".$registro["nombre"]."</td>";
+				$renglones.="<td>".$registro["departamento"]."</td>";
+				$renglones.="<td>".$registro["vigencia"]."</td>";
+				$renglones.="</tr>";
+			}
+			$respuesta=true;
+		}
+		else{
+			//print("sin datos :C");
+			$renglones.="<tr><td colspan=4>Sin Registros</td></tr>";
+		}
+
+
+		$salidaJSON=array('respuesta'=>$respuesta,'renglones'=>$renglones); 
+		print json_encode($salidaJSON);
+	}
 	//menú principal
 	$opcion=$_POST["opcion"];
 	switch ($opcion) {
@@ -71,6 +131,15 @@
 			break;
 		case 'alta':
 			alta();
+			break;
+		case 'baja':
+			baja();
+			break;
+		case 'cambio':
+			cambio();
+			break;
+		case 'consulta':
+			consulta();
 			break;
 		default:
 			# code...
