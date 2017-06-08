@@ -1,3 +1,15 @@
+/*const rq = require('electron-require');
+const main = rq.remote('./main.js');
+
+const $ = require('jquery');
+
+
+const ipc = require('electron').ipcRenderer;
+const btnPDF = document.getElementById('btnPDF');
+btnPDF.addEventListener('click', function(event){
+  ipc.send('print-to-pdf');
+});*/
+
 var iniciaApp = function(){
 	var btnID="";
 	var hour="";
@@ -145,6 +157,42 @@ var iniciaApp = function(){
 		$("#txtHora").val(hour);
 		$("#txtCubiculo").val(cubic);
 		$("#secEstudiantes").show("slow");
+
+		var parametros="opcion=consultarTxt";
+
+		var cargaDatos=$.ajax({
+			method:"POST",
+			url:"php/datos.php",
+			data:parametros,
+			dataType:"json"
+		});
+		cargaDatos.done(function(data){
+			if(data.respuesta){
+				//alert("carga dsadx2");
+				var registros= data.tabla.split(" ");
+				//alert(registros);
+				for (var i = 0; i < registros.length-1; i+=6) {
+					var hora="";
+					if(registros[i].substring(0,1)!=0){
+						hora=registros[i].substring(0,2);
+					}
+					else{
+						hora=registros[i].substring(1,2);
+					}
+					var btn="btnC"+registros[i+1]+hora;
+
+					if(btn==btnID){
+						$("#txtNumControl").val(registros[i+2]);
+						$("#txtNombre").val(registros[i+3]);
+						$("#txtCarrera").val(registros[i+4]);
+						$("#txtFecha").val(registros[i+5]);
+					}
+				}
+			}
+		});
+		cargaDatos.fail(function(jqError,textStatus){
+			alert("Error asdasdas:"+textStatus);
+		});
 	}
 
 	/*function getId(id){

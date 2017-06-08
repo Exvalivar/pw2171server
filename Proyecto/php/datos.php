@@ -75,6 +75,27 @@
 		$salidaJSON=array('respuesta'=>$respuesta,'tabla'=>$tabla); 
 		print json_encode($salidaJSON);
 	}
+	function consultarTxt(){
+		$respuesta=false;
+
+		$conexion=conecta();
+
+		$consulta=sprintf("select t2.* from (select hora, cubiculo, max(id) as Id from estudiantes group by hora, cubiculo) t1 join estudiantes t2 on t1.id=t2.Id");
+
+		$resultado=mysql_query($consulta);
+
+		$tabla="";
+
+		if(mysql_num_rows($resultado)>0){//hay registros
+			while ($registro=mysql_fetch_array($resultado)) {
+				$tabla.= $registro["Hora"]." ".$registro["Cubiculo"]." ".$registro["numControl"]." ".$registro["Nombre"]." ".$registro["Carrera"]." ".$registro["Fecha"]." ";
+			}
+			$respuesta=true;
+		}
+
+		$salidaJSON=array('respuesta'=>$respuesta,'tabla'=>$tabla); 
+		print json_encode($salidaJSON);
+	}
 
 	//menú principal
 	$opcion=$_POST["opcion"];
@@ -91,6 +112,8 @@
 		case 'consultar':
 			consultar();
 			break;
+		case 'consultarTxt':
+			consultarTxt();
 		default:
 			# code...
 			break;

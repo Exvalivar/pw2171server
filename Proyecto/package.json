@@ -1,0 +1,27 @@
+{
+  "name": "apartados",
+  "version": "1.0.0",
+  "description": "proyecto de sistema de apartados para cubiculos de una biblioteca",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cubiculos",
+    "biblioteca",
+    "apartados",
+    "hora",
+    "estudiante",
+    "proyecto",
+    "pw"
+  ],
+  "author": "Alvaro Carrillo Moreno",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.6.10",
+    "electron-packager": "^8.7.1",
+    "electron-require": "^0.3.0",
+    "jquery": "^3.2.1"
+  }
+}
