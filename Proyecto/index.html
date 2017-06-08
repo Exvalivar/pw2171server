@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>PROYECTO SISTEMA DE CARGAS</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/estilos.css">
+	<script
+  		src="https://code.jquery.com/jquery-3.2.1.min.js"
+  		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  		crossorigin="anonymous">
+  	</script>
+  	<script src="js/eventos.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Sistema de Ejemplo</h1>
+	</header>
+	<main>
+		<section id="secHorarios">
+			<br>
+			<table border=0 class="table table-bordered table-hover" id="tblHorarios">
+				<tr>
+					<td>Hora Cubiculo</td>
+					<td>7:00</td>
+					<td>8:00</td>
+					<td>9:00</td>
+					<td>10:00</td>
+					<td>11:00</td>
+					<td>12:00</td>
+					<td>13:00</td>
+					<td>14:00</td>
+					<td>15:00</td>
+					<td>16:00</td>
+					<td>17:00</td>
+					<td></td>	
+				</tr>
+				<tr>
+					<span id="sp1">
+						<td>01</td>
+						<td><button class="btn btn-default" id="btnC17">-</button></td>
+						<td><button class="btn btn-default" id="btnC18">-</button></td>
+						<td><button class="btn btn-default" id="btnC19">-</button></td>
+						<td><button class="btn btn-default" id="btnC110">-</button></td>
+						<td><button class="btn btn-default" id="btnC111">-</button></td>
+						<td><button class="btn btn-default" id="btnC112">-</button></td>
+						<td><button class="btn btn-default" id="btnC113">-</button></td>
+						<td><button class="btn btn-default" id="btnC114">-</button></td>
+						<td><button class="btn btn-default" id="btnC115">-</button></td>
+						<td><button class="btn btn-default" id="btnC116">-</button></td>
+						<td><button class="btn btn-default" id="btnC117">-</button></td>
+						<td><button class="btn btn-default" id="btnpdf01">...</button></td>
+					</span>
+				</tr>
+				<tr>
+					<td>02</td>
+					<td><button class="btn btn-default" id="btnC27">-</button></td>
+					<td><button class="btn btn-default" id="btnC28">-</button></td>
+					<td><button class="btn btn-default" id="btnC29">-</button></td>
+					<td><button class="btn btn-default" id="btnC210">-</button></td>
+					<td><button class="btn btn-default" id="btnC211">-</button></td>
+					<td><button class="btn btn-default" id="btnC212">-</button></td>
+					<td><button class="btn btn-default" id="btnC213">-</button></td>
+					<td><button class="btn btn-default" id="btnC214">-</button></td>
+					<td><button class="btn btn-default" id="btnC215">-</button></td>
+					<td><button class="btn btn-default" id="btnC216">-</button></td>
+					<td><button class="btn btn-default" id="btnC217">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf02">...</button></td>
+				</tr>
+					<tr>
+					<td>03</td>
+					<td><button class="btn btn-default" id="btnC37">-</button></td>
+					<td><button class="btn btn-default" id="btnC38">-</button></td>
+					<td><button class="btn btn-default" id="btnC39">-</button></td>
+					<td><button class="btn btn-default" id="btnC310">-</button></td>
+					<td><button class="btn btn-default" id="btnC311">-</button></td>
+					<td><button class="btn btn-default" id="btnC312">-</button></td>
+					<td><button class="btn btn-default" id="btnC313">-</button></td>
+					<td><button class="btn btn-default" id="btnC314">-</button></td>
+					<td><button class="btn btn-default" id="btnC315">-</button></td>
+					<td><button class="btn btn-default" id="btnC316">-</button></td>
+					<td><button class="btn btn-default" id="btnC317">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf03">...</button></td>
+				</tr>
+					<tr>
+					<td>04</td>
+					<td><button class="btn btn-default" id="btnC47">-</button></td>
+					<td><button class="btn btn-default" id="btnC48">-</button></td>
+					<td><button class="btn btn-default" id="btnC49">-</button></td>
+					<td><button class="btn btn-default" id="btnC410">-</button></td>
+					<td><button class="btn btn-default" id="btnC411">-</button></td>
+					<td><button class="btn btn-default" id="btnC412">-</button></td>
+					<td><button class="btn btn-default" id="btnC413">-</button></td>
+					<td><button class="btn btn-default" id="btnC414">-</button></td>
+					<td><button class="btn btn-default" id="btnC415">-</button></td>
+					<td><button class="btn btn-default" id="btnC416">-</button></td>
+					<td><button class="btn btn-default" id="btnC417">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf4">...</button></td>
+				</tr>
+					<tr>
+					<td>05</td>
+					<td><button class="btn btn-default" id="btnC57">-</button></td>
+					<td><button class="btn btn-default" id="btnC58">-</button></td>
+					<td><button class="btn btn-default" id="btnC59">-</button></td>
+					<td><button class="btn btn-default" id="btnC510">-</button></td>
+					<td><button class="btn btn-default" id="btnC511">-</button></td>
+					<td><button class="btn btn-default" id="btnC512">-</button></td>
+					<td><button class="btn btn-default" id="btnC513">-</button></td>
+					<td><button class="btn btn-default" id="btnC514">-</button></td>
+					<td><button class="btn btn-default" id="btnC515">-</button></td>
+					<td><button class="btn btn-default" id="btnC516">-</button></td>
+					<td><button class="btn btn-default" id="btnC517">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf5">...</button></td>
+				</tr>
+					<tr>
+					<td>06</td>
+					<td><button class="btn btn-default" id="btnC67">-</button></td>
+					<td><button class="btn btn-default" id="btnC68">-</button></td>
+					<td><button class="btn btn-default" id="btnC69">-</button></td>
+					<td><button class="btn btn-default" id="btnC610">-</button></td>
+					<td><button class="btn btn-default" id="btnC611">-</button></td>
+					<td><button class="btn btn-default" id="btnC612">-</button></td>
+					<td><button class="btn btn-default" id="btnC613">-</button></td>
+					<td><button class="btn btn-default" id="btnC614">-</button></td>
+					<td><button class="btn btn-default" id="btnC615">-</button></td>
+					<td><button class="btn btn-default" id="btnC616">-</button></td>
+					<td><button class="btn btn-default" id="btnC617">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf06">...</button></td>
+				</tr>
+					<tr>
+					<td>07</td>
+					<td><button class="btn btn-default" id="btnC77">-</button></td>
+					<td><button class="btn btn-default" id="btnC78">-</button></td>
+					<td><button class="btn btn-default" id="btnC79">-</button></td>
+					<td><button class="btn btn-default" id="btnC710">-</button></td>
+					<td><button class="btn btn-default" id="btnC711">-</button></td>
+					<td><button class="btn btn-default" id="btnC712">-</button></td>
+					<td><button class="btn btn-default" id="btnC713">-</button></td>
+					<td><button class="btn btn-default" id="btnC714">-</button></td>
+					<td><button class="btn btn-default" id="btnC715">-</button></td>
+					<td><button class="btn btn-default" id="btnC716">-</button></td>
+					<td><button class="btn btn-default" id="btnC717">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf07">...</button></td>
+				</tr>
+					<tr>
+					<td>08</td>
+					<td><button class="btn btn-default" id="btnC87">-</button></td>
+					<td><button class="btn btn-default" id="btnC88">-</button></td>
+					<td><button class="btn btn-default" id="btnC89">-</button></td>
+					<td><button class="btn btn-default" id="btnC810">-</button></td>
+					<td><button class="btn btn-default" id="btnC811">-</button></td>
+					<td><button class="btn btn-default" id="btnC812">-</button></td>
+					<td><button class="btn btn-default" id="btnC813">-</button></td>
+					<td><button class="btn btn-default" id="btnC814">-</button></td>
+					<td><button class="btn btn-default" id="btnC815">-</button></td>
+					<td><button class="btn btn-default" id="btnC816">-</button></td>
+					<td><button class="btn btn-default" id="btnC817">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf8">...</button></td>
+				</tr>
+					<tr>
+					<td>09</td>
+					<td><button class="btn btn-default" id="btnC97">-</button></td>
+					<td><button class="btn btn-default" id="btnC98">-</button></td>
+					<td><button class="btn btn-default" id="btnC99">-</button></td>
+					<td><button class="btn btn-default" id="btnC910">-</button></td>
+					<td><button class="btn btn-default" id="btnC911">-</button></td>
+					<td><button class="btn btn-default" id="btnC912">-</button></td>
+					<td><button class="btn btn-default" id="btnC913">-</button></td>
+					<td><button class="btn btn-default" id="btnC914">-</button></td>
+					<td><button class="btn btn-default" id="btnC915">-</button></td>
+					<td><button class="btn btn-default" id="btnC916">-</button></td>
+					<td><button class="btn btn-default" id="btnC917">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf09">...</button></td>
+				</tr>
+					<tr>
+					<td>10</td>
+					<td><button class="btn btn-default" id="btnC107">-</button></td>
+					<td><button class="btn btn-default" id="btnC108">-</button></td>
+					<td><button class="btn btn-default" id="btnC109">-</button></td>
+					<td><button class="btn btn-default" id="btnC1010">-</button></td>
+					<td><button class="btn btn-default" id="btnC1011">-</button></td>
+					<td><button class="btn btn-default" id="btnC1012">-</button></td>
+					<td><button class="btn btn-default" id="btnC1013">-</button></td>
+					<td><button class="btn btn-default" id="btnC1014">-</button></td>
+					<td><button class="btn btn-default" id="btnC1015">-</button></td>
+					<td><button class="btn btn-default" id="btnC1016">-</button></td>
+					<td><button class="btn btn-default" id="btnC1017">-</button></td>
+					<td><button class="btn btn-default" id="btnpdf10">...</button></td>
+				</tr>
+			</table>
+		</section>
+
+		<section id="secEstudiantes">
+			<article id="artMenu">
+				<article id="secEst1">
+					<input type="text" id="txtNumControl" placeholder="Número de control" class="form-control">
+					<input type="text" id="txtNombre" placeholder="Nombre" class="form-control">
+					<button class="btn btn-info" id="btnInte">?</button>
+				</article>
+				<article id="secEst2">
+					<input type="text" id="txtCarrera" placeholder="Carrera" class="form-control">	
+				</article>
+				<article id="secEst3">
+					<input type="text" id="txtFecha" placeholder="Fecha" class="form-control">
+					<input type="text" id="txtHora" placeholder="Hora" class="form-control">
+					<input type="text" id="txtCubiculo" placeholder="Cubiculo" class="form-control">
+				</article>
+			</article>
+			<article id="artNav">
+				<nav>
+					<ul>
+						<li>
+							<button class="btn btn-success" id="btnGuardar">Guardar</button>
+						</li>
+						<li>
+							<button class="btn btn-warning" id="btnLiberar">Liberar</button>
+						</li>
+						<li>
+							<button class="btn btn-danger" id="btnEliminar">Eliminar</button>
+						</li>	
+					</ul>
+				</nav>
+			</article>
+		</section>
+	</main>
+</body>
+</html>

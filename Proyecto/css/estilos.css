@@ -1,0 +1,80 @@
+body{
+	font-size: 16px;
+	margin: 0 auto;
+	max-width: 1024px;
+}
+article nav{
+	text-align: center;
+}
+nav ul li{
+	display: inline-block;
+}
+nav ul li button{
+	width: 90px;
+}
+
+h1{
+	text-align: center;
+}
+
+#secHorarios table tr td button{
+ border-radius: 10px;
+ width: 70px;
+ height: 40px;
+ margin: -10px -20px -8px -8px;
+}
+
+#tblHorarios tr td button{ 
+	border-radius: 8px;
+	width: 50px;
+}
+
+#artMenu{
+	text-align: center;
+}
+
+#secEst1 input[id="txtNumControl"],input[id="txtNombre"],button[id="btnInte"]{
+	display: inline-block;
+}
+
+#secEst2 input[id="txtCarrera"]{
+	display: inline-block;
+}
+
+#secEst3 input[id="txtFecha"],input[id="txtHora"],input[id="txtCubiculo"]{
+	display: inline-block;
+}
+
+#secEst1,#secEst2,#secEst3{
+	margin: 0 auto;
+	width: 55%;
+}
+
+#txtNumControl{
+	vertical-align: top;
+	width: 28%;
+}
+
+#txtNombre{
+	vertical-align: top;
+	width: 58%;
+}
+
+#btnInte{
+	vertical-align: top;
+	width: 9%;
+}
+
+#txtCarrera{
+	vertical-align: top;
+	width: 99%;
+}
+
+#txtFecha,#txtHora,#txtCubiculo{
+	vertical-align: top;
+	width: 32%;
+}
+
+#secEstudiantes{
+	display: none;
+}
